@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(160deg, rgba(92, 34, 16, 0.78) 0%, rgba(30, 10, 5, 0.85) 100%),
+    linear-gradient(160deg, rgba(92, 34, 16, 0.44) 0%, rgba(30, 10, 5, 0.67) 100%),
     url('../img/hero-spaghetti.jpg') center / cover no-repeat;
 }
 
@@ -117,6 +117,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.155);
 }
 
 @media (min-width: 1000px) {
@@ -132,8 +133,29 @@
 
 /* ─── INFO STRIP ────────────────────────────────────────────── */
 #strip {
+  position: relative;
   background: var(--rust);
-  padding: 16px 20px;
+  padding: 48px 20px;
+}
+
+#strip::before,
+#strip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+}
+
+#strip::before {
+  top: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFDF8' d='M0,0 L1440,0 L1440,28 C1260,8 1080,40 720,22 C360,4 180,36 0,18 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+}
+
+#strip::after {
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFDF8' d='M0,40 L1440,40 L1440,12 C1260,32 1080,2 720,18 C360,34 180,4 0,22 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
 }
 
 .strip-inner {
@@ -142,6 +164,8 @@
   justify-content: center;
   align-items: center;
   gap: 1rem 2.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .strip-item {
@@ -181,7 +205,7 @@
   width: 100%;
   height: 480px;
   object-fit: cover;
-  box-shadow: 12px 12px 0 var(--amber), 0 20px 60px rgba(92, 34, 16, 0.15);
+  box-shadow: 8px 8px 0 rgba(168, 98, 40, 0.45), 0 20px 60px rgba(92, 34, 16, 0.15);
 }
 
 .chi-badge {
@@ -269,19 +293,26 @@
   padding: 100px 0;
   background: var(--rust-dk);
   position: relative;
-  overflow: hidden;
+}
+
+#specialita::before,
+#specialita::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
 }
 
 #specialita::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  background: rgba(193, 120, 48, 0.07);
-  pointer-events: none;
+  top: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFDF8' d='M0,0 L1440,0 L1440,28 C1260,8 1080,40 720,22 C360,4 180,36 0,18 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+}
+
+#specialita::after {
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%23F0E5CC' d='M0,40 L1440,40 L1440,12 C1260,32 1080,2 720,18 C360,34 180,4 0,22 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
 }
 
 .spec-grid {
@@ -386,7 +417,8 @@
 
 .perche-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 320px));
+  justify-content: center;
   gap: 28px;
   margin-top: 3.5rem;
 }

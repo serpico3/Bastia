@@ -14,8 +14,8 @@
   --rust:      #7B3118;
   --rust-dk:   #5C2210;
   --rust-mid:  #8B3A1E;
-  --amber:     #C17830;
-  --amber-lt:  #D4993E;
+  --amber:     #A86228;
+  --amber-lt:  #B87A30;
   --cream:     #FBF5E8;
   --cream-dk:  #F0E5CC;
   --cream-md:  #F5EDDA;
@@ -206,19 +206,20 @@ ul {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 18px 0;
-  transition: background var(--t), padding var(--t), box-shadow var(--t);
+  padding: 18px 0 46px;
+  background: linear-gradient(160deg, rgba(92, 34, 16, 0.48) 0%, rgba(30, 10, 5, 0.74) 100%);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,0 L1440,0 L1440,72 C1260,52 1060,86 860,72 C580,54 280,86 0,72 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,0 L1440,0 L1440,72 C1260,52 1060,86 860,72 C580,54 280,86 0,72 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transition: padding var(--t), box-shadow var(--t);
 }
 
 #navbar.scrolled {
-  background: var(--rust-dk);
-  padding: 12px 0;
+  padding: 12px 0 46px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
-}
-
-/* navbar sempre scura sulle pagine interne */
-#navbar.always-dark {
-  background: var(--rust-dk);
 }
 
 .nav-inner {
@@ -326,9 +327,20 @@ ul {
 
 /* ─── FOOTER ────────────────────────────────────────────────── */
 #footer {
+  position: relative;
   background: var(--rust-dk);
-  padding: 48px 0 24px;
-  border-top: 1px solid rgba(193, 120, 48, 0.25);
+  padding: 72px 0 24px;
+}
+
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath fill='%23F0E5CC' d='M0,0 L1440,0 L1440,28 C1260,8 1080,40 720,22 C360,4 180,36 0,18 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  pointer-events: none;
 }
 
 .footer-inner {
@@ -337,6 +349,8 @@ ul {
   align-items: center;
   gap: 16px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-logo {

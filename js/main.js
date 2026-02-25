@@ -9,16 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
 
   if (navbar) {
-    // Le pagine interne hanno la navbar sempre scura
-    if (navbar.classList.contains('always-dark')) {
-      navbar.classList.add('scrolled');
+    const FADE_PX = 220; // distanza in px per raggiungere il 100%
+
+    function updateNavbar() {
+      const t = Math.min(window.scrollY / FADE_PX, 1);
+      const a1 = +(0.48 + 0.52 * t).toFixed(3); // 0.48 → 1.0
+      const a2 = +(0.74 + 0.26 * t).toFixed(3); // 0.74 → 1.0
+      navbar.style.background =
+        `linear-gradient(160deg, rgba(92,34,16,${a1}) 0%, rgba(30,10,5,${a2}) 100%)`;
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
     }
 
-    window.addEventListener('scroll', () => {
-      if (!navbar.classList.contains('always-dark')) {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
-      }
-    }, { passive: true });
+    if (navbar.classList.contains('always-dark')) {
+      // Pagine interne: sempre pieno
+      navbar.style.background = 'linear-gradient(160deg, rgb(92,34,16) 0%, rgb(30,10,5) 100%)';
+      navbar.classList.add('scrolled');
+    } else {
+      updateNavbar();
+      window.addEventListener('scroll', updateNavbar, { passive: true });
+    }
   }
 
   /* ── Scroll-top button ─────────────────────────────────────── */
