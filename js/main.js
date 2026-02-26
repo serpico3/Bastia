@@ -3,14 +3,17 @@
    (navbar scroll, mobile menu, scroll-top, active nav link)
 ═══════════════════════════════════════════════════════════════ */
 
-/* ── Loading screen ──────────────────────────────────────────── */
+/* ── Loading screen (minimo 2 secondi) ───────────────────────── */
+const _loadStart    = Date.now();
 const loadingScreen = document.getElementById('loading-screen');
 if (loadingScreen) {
   window.addEventListener('load', () => {
+    const elapsed = Date.now() - _loadStart;
+    const delay   = Math.max(0, 2000 - elapsed); // aspetta il residuo per arrivare a 2s
     setTimeout(() => {
       loadingScreen.classList.add('hidden');
       setTimeout(() => loadingScreen.remove(), 750);
-    }, 400);
+    }, delay);
   });
 }
 
