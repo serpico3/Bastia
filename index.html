@@ -50,6 +50,32 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/home.css" />
 
+  <!-- Structured Data: WebSite — identifica il sito ufficiale, favorisce i sitelinks -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "La Bastia Ristorante Pizzeria",
+    "alternateName": ["La Bastia", "Ristorante La Bastia", "Pizzeria La Bastia"],
+    "url": "https://www.labastia.it",
+    "description": "Sito ufficiale del Ristorante Pizzeria La Bastia di Nogarole Rocca (VR).",
+    "inLanguage": ["it", "en", "de"],
+    "publisher": {
+      "@type": "Restaurant",
+      "name": "La Bastia",
+      "telephone": "+390456304370",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Roma 36",
+        "addressLocality": "Nogarole Rocca",
+        "postalCode": "37060",
+        "addressRegion": "VR",
+        "addressCountry": "IT"
+      }
+    }
+  }
+  </script>
+
   <!-- Structured Data: Restaurant -->
   <script type="application/ld+json">
   {
