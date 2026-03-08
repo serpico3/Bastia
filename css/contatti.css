@@ -85,7 +85,7 @@
 .orari-table td:first-child {
   font-weight: 700;
   color: var(--text);
-  width: 55%;
+  width: 38%;
 }
 
 .orari-table tr:last-child td {

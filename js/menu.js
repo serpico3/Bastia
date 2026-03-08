@@ -9,29 +9,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!tabs.length) return;
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // rimuovi active da tutti
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      panels.forEach(p => p.classList.remove('active'));
-
-      // attiva quello cliccato
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      const target = document.getElementById('panel-' + tab.dataset.panel);
-      if (target) target.classList.add('active');
+  function activateTab(tab, scrollToMenu) {
+    tabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
     });
+    panels.forEach(p => p.classList.remove('active'));
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const target = document.getElementById('panel-' + tab.dataset.panel);
+    if (target) target.classList.add('active');
+
+    if (scrollToMenu) {
+      const menuEl = document.getElementById('menu-page');
+      if (menuEl) {
+        const y = menuEl.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'instant' });
+      }
+    }
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab, true));
   });
 
   /* ── Apertura tab da URL hash (#pizza, #pesce …) ─────────── */
   const hash = window.location.hash.replace('#', '');
   if (hash) {
     const matchingTab = document.querySelector(`.menu-tab[data-panel="${hash}"]`);
-    if (matchingTab) matchingTab.click();
+    if (matchingTab) activateTab(matchingTab, false);
   }
 
 });
